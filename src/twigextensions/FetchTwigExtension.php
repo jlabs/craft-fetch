@@ -44,7 +44,7 @@ class FetchTwigExtension extends \Twig_Extension
         if ($format == 'json') {
             $body = json_decode($response->getBody(), true);
         } elseif ($format == 'xml') {
-            $xmlbody = simplexml_load_string($response->getBody());
+            $xmlbody = simplexml_load_string($response->getBody(), null, LIBXML_NOCDATA);
             $json = json_encode($xmlbody);
             $body = json_decode($json,TRUE);
         } else {
